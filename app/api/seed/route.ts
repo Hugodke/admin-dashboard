@@ -1,112 +1,161 @@
-// import { db, products } from 'lib/db';
+import { db, products } from '@/lib/db';
 
 export const dynamic = 'force-dynamic';
 
 export async function GET() {
-  return Response.json({
-    message: 'Uncomment to seed data after DB is set up.'
-  });
+  try {
+    // Clear existing data
+    await db.delete(products);
 
-  // await db.insert(products).values([
-  //   {
-  //     id: 1,
-  //     imageUrl:
-  //       'https://uwja77bygk2kgfqe.public.blob.vercel-storage.com/smartphone-gaPvyZW6aww0IhD3dOpaU6gBGILtcJ.webp',
-  //     name: 'Smartphone X Pro',
-  //     status: 'active',
-  //     price: '999.00',
-  //     stock: 150,
-  //     availableAt: new Date()
-  //   },
-  //   {
-  //     id: 2,
-  //     imageUrl:
-  //       'https://uwja77bygk2kgfqe.public.blob.vercel-storage.com/earbuds-3rew4JGdIK81KNlR8Edr8NBBhFTOtX.webp',
-  //     name: 'Wireless Earbuds Ultra',
-  //     status: 'active',
-  //     price: '199.00',
-  //     stock: 300,
-  //     availableAt: new Date()
-  //   },
-  //   {
-  //     id: 3,
-  //     imageUrl:
-  //       'https://uwja77bygk2kgfqe.public.blob.vercel-storage.com/home-iTeNnmKSMnrykOS9IYyJvnLFgap7Vw.webp',
-  //     name: 'Smart Home Hub',
-  //     status: 'active',
-  //     price: '149.00',
-  //     stock: 200,
-  //     availableAt: new Date()
-  //   },
-  //   {
-  //     id: 4,
-  //     imageUrl:
-  //       'https://uwja77bygk2kgfqe.public.blob.vercel-storage.com/tv-H4l26crxtm9EQHLWc0ddrsXZ0V0Ofw.webp',
-  //     name: '4K Ultra HD Smart TV',
-  //     status: 'active',
-  //     price: '799.00',
-  //     stock: 50,
-  //     availableAt: new Date()
-  //   },
-  //   {
-  //     id: 5,
-  //     imageUrl:
-  //       'https://uwja77bygk2kgfqe.public.blob.vercel-storage.com/laptop-9bgUhjY491hkxiMDeSgqb9R5I3lHNL.webp',
-  //     name: 'Gaming Laptop Pro',
-  //     status: 'active',
-  //     price: '1299.00',
-  //     stock: 75,
-  //     availableAt: new Date()
-  //   },
-  //   {
-  //     id: 6,
-  //     imageUrl:
-  //       'https://uwja77bygk2kgfqe.public.blob.vercel-storage.com/headset-lYnRnpjDbZkB78lS7nnqEJFYFAUDg6.webp',
-  //     name: 'VR Headset Plus',
-  //     status: 'active',
-  //     price: '349.00',
-  //     stock: 120,
-  //     availableAt: new Date()
-  //   },
-  //   {
-  //     id: 7,
-  //     imageUrl:
-  //       'https://uwja77bygk2kgfqe.public.blob.vercel-storage.com/watch-S2VeARK6sEM9QFg4yNQNjHFaHc3sXv.webp',
-  //     name: 'Smartwatch Elite',
-  //     status: 'active',
-  //     price: '249.00',
-  //     stock: 250,
-  //     availableAt: new Date()
-  //   },
-  //   {
-  //     id: 8,
-  //     imageUrl:
-  //       'https://uwja77bygk2kgfqe.public.blob.vercel-storage.com/speaker-4Zk0Ctx5AvxnwNNTFWVK4Gtpru4YEf.webp',
-  //     name: 'Bluetooth Speaker Max',
-  //     status: 'active',
-  //     price: '99.00',
-  //     stock: 400,
-  //     availableAt: new Date()
-  //   },
-  //   {
-  //     id: 9,
-  //     imageUrl:
-  //       'https://uwja77bygk2kgfqe.public.blob.vercel-storage.com/charger-GzRr0NSkCj0ZYWkTMvxXGZQu47w9r5.webp',
-  //     name: 'Portable Charger Super',
-  //     status: 'active',
-  //     price: '59.00',
-  //     stock: 500,
-  //     availableAt: new Date()
-  //   },
-  //   {
-  //     id: 10,
-  //     imageUrl:
-  //       'https://uwja77bygk2kgfqe.public.blob.vercel-storage.com/thermostat-8GnK2LDE3lZAjUVtiBk61RrSuqSTF7.webp',
-  //     name: 'Smart Thermostat Pro',
-  //     status: 'active',
-  //     price: '199.00',
-  //     stock: 175,
-  //     availableAt: new Date()
-  //   }
-  // ]);
+    // Insert sample reselling/scalping items
+    await db.insert(products).values([
+      {
+        imageUrl: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=300&h=300&fit=crop',
+        name: 'Air Jordan 1 Retro High OG',
+        brand: 'Nike',
+        model: 'Air Jordan 1',
+        size: '10.5',
+        condition: 'new',
+        status: 'sold',
+        purchasePrice: '170.00',
+        sellingPrice: '300.00',
+        soldPrice: '285.00',
+        stock: 1,
+        purchaseDate: new Date('2024-01-15'),
+        soldDate: new Date('2024-01-20'),
+        platform: 'StockX',
+        notes: 'Chicago colorway, high demand'
+      },
+      {
+        imageUrl: 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=300&h=300&fit=crop',
+        name: 'Adidas Yeezy Boost 350 V2',
+        brand: 'Adidas',
+        model: 'Yeezy 350 V2',
+        size: '9',
+        condition: 'new',
+        status: 'listed',
+        purchasePrice: '230.00',
+        sellingPrice: '400.00',
+        soldPrice: null,
+        stock: 1,
+        purchaseDate: new Date('2024-02-01'),
+        soldDate: null,
+        platform: 'GOAT',
+        notes: 'Zebra colorway, waiting for price increase'
+      },
+      {
+        imageUrl: 'https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=300&h=300&fit=crop',
+        name: 'Nike Dunk Low',
+        brand: 'Nike',
+        model: 'Dunk Low',
+        size: '11',
+        condition: 'new',
+        status: 'in_stock',
+        purchasePrice: '110.00',
+        sellingPrice: '180.00',
+        soldPrice: null,
+        stock: 2,
+        purchaseDate: new Date('2024-02-15'),
+        soldDate: null,
+        platform: null,
+        notes: 'Panda colorway, holding for better price'
+      },
+      {
+        imageUrl: 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=300&h=300&fit=crop',
+        name: 'New Balance 550',
+        brand: 'New Balance',
+        model: '550',
+        size: '10',
+        condition: 'new',
+        status: 'sold',
+        purchasePrice: '130.00',
+        sellingPrice: '200.00',
+        soldPrice: '195.00',
+        stock: 1,
+        purchaseDate: new Date('2024-01-25'),
+        soldDate: new Date('2024-02-10'),
+        platform: 'Facebook Marketplace',
+        notes: 'White/Green colorway, local sale'
+      },
+      {
+        imageUrl: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=300&h=300&fit=crop',
+        name: 'Travis Scott Jordan 1 Low',
+        brand: 'Nike',
+        model: 'Jordan 1 Low',
+        size: '9.5',
+        condition: 'new',
+        status: 'pending',
+        purchasePrice: '650.00',
+        sellingPrice: '1200.00',
+        soldPrice: null,
+        stock: 1,
+        purchaseDate: new Date('2024-02-20'),
+        soldDate: null,
+        platform: 'StockX',
+        notes: 'Fragment collab, high value item'
+      },
+      {
+        imageUrl: 'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=300&h=300&fit=crop',
+        name: 'PlayStation 5',
+        brand: 'Sony',
+        model: 'PS5',
+        size: null,
+        condition: 'new',
+        status: 'sold',
+        purchasePrice: '499.99',
+        sellingPrice: '650.00',
+        soldPrice: '625.00',
+        stock: 1,
+        purchaseDate: new Date('2024-01-10'),
+        soldDate: new Date('2024-01-12'),
+        platform: 'eBay',
+        notes: 'Console restocking opportunity'
+      },
+      {
+        imageUrl: 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=300&h=300&fit=crop',
+        name: 'Supreme Box Logo Hoodie',
+        brand: 'Supreme',
+        model: 'Box Logo Hoodie',
+        size: 'M',
+        condition: 'new',
+        status: 'in_stock',
+        purchasePrice: '168.00',
+        sellingPrice: '450.00',
+        soldPrice: null,
+        stock: 1,
+        purchaseDate: new Date('2024-02-05'),
+        soldDate: null,
+        platform: null,
+        notes: 'Black colorway, F/W 2024'
+      },
+      {
+        imageUrl: 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=300&h=300&fit=crop',
+        name: 'Off-White x Nike Air Max 90',
+        brand: 'Nike',
+        model: 'Air Max 90',
+        size: '10',
+        condition: 'new',
+        status: 'listed',
+        purchasePrice: '450.00',
+        sellingPrice: '800.00',
+        soldPrice: null,
+        stock: 1,
+        purchaseDate: new Date('2024-01-30'),
+        soldDate: null,
+        platform: 'GOAT',
+        notes: 'Desert Ore colorway, Virgil Abloh collab'
+      }
+    ]);
+
+    return Response.json({
+      message: 'Database seeded successfully with reselling items!',
+      count: 8
+    });
+  } catch (error) {
+    console.error('Error seeding database:', error);
+    return Response.json(
+      { error: 'Failed to seed database' },
+      { status: 500 }
+    );
+  }
 }

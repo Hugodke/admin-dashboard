@@ -7,7 +7,9 @@ import {
   PanelLeft,
   Settings,
   ShoppingCart,
-  Users2
+  TrendingUp,
+  DollarSign,
+  Archive
 } from 'lucide-react';
 
 import {
@@ -74,19 +76,19 @@ function DesktopNav() {
           <Home className="h-5 w-5" />
         </NavItem>
 
-        <NavItem href="#" label="Orders">
-          <ShoppingCart className="h-5 w-5" />
-        </NavItem>
-
-        <NavItem href="/" label="Products">
+        <NavItem href="/inventory" label="Inventory">
           <Package className="h-5 w-5" />
         </NavItem>
 
-        <NavItem href="/customers" label="Customers">
-          <Users2 className="h-5 w-5" />
+        <NavItem href="/sold" label="Sold Items">
+          <TrendingUp className="h-5 w-5" />
         </NavItem>
 
-        <NavItem href="#" label="Analytics">
+        <NavItem href="/profit" label="Profit/Loss">
+          <DollarSign className="h-5 w-5" />
+        </NavItem>
+
+        <NavItem href="/analytics" label="Analytics">
           <LineChart className="h-5 w-5" />
         </NavItem>
       </nav>
@@ -134,32 +136,32 @@ function MobileNav() {
             Dashboard
           </Link>
           <Link
-            href="#"
-            className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-          >
-            <ShoppingCart className="h-5 w-5" />
-            Orders
-          </Link>
-          <Link
-            href="#"
+            href="/inventory"
             className="flex items-center gap-4 px-2.5 text-foreground"
           >
             <Package className="h-5 w-5" />
-            Products
+            Inventory
           </Link>
           <Link
-            href="#"
+            href="/sold"
             className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
           >
-            <Users2 className="h-5 w-5" />
-            Customers
+            <TrendingUp className="h-5 w-5" />
+            Sold Items
           </Link>
           <Link
-            href="#"
+            href="/profit"
+            className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+          >
+            <DollarSign className="h-5 w-5" />
+            Profit/Loss
+          </Link>
+          <Link
+            href="/analytics"
             className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
           >
             <LineChart className="h-5 w-5" />
-            Settings
+            Analytics
           </Link>
         </nav>
       </SheetContent>

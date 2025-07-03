@@ -44,9 +44,9 @@ export function ProductsTable({
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Products</CardTitle>
+        <CardTitle>Inventory</CardTitle>
         <CardDescription>
-          Manage your products and view their sales performance.
+          Manage your inventory items and track their performance and profitability.
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -56,13 +56,12 @@ export function ProductsTable({
               <TableHead className="hidden w-[100px] sm:table-cell">
                 <span className="sr-only">Image</span>
               </TableHead>
-              <TableHead>Name</TableHead>
+              <TableHead>Item Details</TableHead>
               <TableHead>Status</TableHead>
-              <TableHead className="hidden md:table-cell">Price</TableHead>
-              <TableHead className="hidden md:table-cell">
-                Total Sales
-              </TableHead>
-              <TableHead className="hidden md:table-cell">Created at</TableHead>
+              <TableHead className="hidden md:table-cell">Pricing</TableHead>
+              <TableHead className="hidden md:table-cell">Stock & Platform</TableHead>
+              <TableHead className="hidden md:table-cell">Dates</TableHead>
+              <TableHead className="hidden lg:table-cell">Profit/Loss</TableHead>
               <TableHead>
                 <span className="sr-only">Actions</span>
               </TableHead>

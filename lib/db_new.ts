@@ -87,24 +87,24 @@ export async function getDashboardStats(): Promise<{
   const allProducts = await db.select().from(products);
   
   const totalInventoryValue = allProducts
-    .filter(p => p.status === 'in_stock' || p.status === 'listed')
-    .reduce((sum, p) => sum + Number(p.purchasePrice) * p.stock, 0);
+    .filter((p: SelectProduct) => p.status === 'in_stock' || p.status === 'listed')
+    .reduce((sum: number, p: SelectProduct) => sum + Number(p.purchasePrice) * p.stock, 0);
   
-  const soldProducts = allProducts.filter(p => p.status === 'sold');
+  const soldProducts = allProducts.filter((p: SelectProduct) => p.status === 'sold');
   const totalProfit = soldProducts
-    .reduce((sum, p) => sum + (Number(p.soldPrice || 0) - Number(p.purchasePrice)), 0);
+    .reduce((sum: number, p: SelectProduct) => sum + (Number(p.soldPrice || 0) - Number(p.purchasePrice)), 0);
   
   const totalSoldItems = soldProducts.length;
   const totalInStock = allProducts
-    .filter(p => p.status === 'in_stock')
-    .reduce((sum, p) => sum + p.stock, 0);
+    .filter((p: SelectProduct) => p.status === 'in_stock')
+    .reduce((sum: number, p: SelectProduct) => sum + p.stock, 0);
   
   const totalInvestment = allProducts
-    .reduce((sum, p) => sum + Number(p.purchasePrice) * p.stock, 0);
+    .reduce((sum: number, p: SelectProduct) => sum + Number(p.purchasePrice) * p.stock, 0);
   
   const totalPendingValue = allProducts
-    .filter(p => p.status === 'pending')
-    .reduce((sum, p) => sum + Number(p.sellingPrice || 0), 0);
+    .filter((p: SelectProduct) => p.status === 'pending')
+    .reduce((sum: number, p: SelectProduct) => sum + Number(p.sellingPrice || 0), 0);
 
   return {
     totalInventoryValue,
@@ -114,26 +114,4 @@ export async function getDashboardStats(): Promise<{
     totalInvestment,
     totalPendingValue
   };
-}
-      totalProducts: 0
-    };
-  }
-
-  if (offset === null) {
-    return { products: [], newOffset: null, totalProducts: 0 };
-  }
-
-  let totalProducts = await db.select({ count: count() }).from(products);
-  let moreProducts = await db.select().from(products).limit(5).offset(offset);
-  let newOffset = moreProducts.length >= 5 ? offset + 5 : null;
-
-  return {
-    products: moreProducts,
-    newOffset,
-    totalProducts: totalProducts[0].count
-  };
-}
-
-export async function deleteProductById(id: number) {
-  await db.delete(products).where(eq(products.id, id));
 }
